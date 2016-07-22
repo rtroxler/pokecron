@@ -10,13 +10,13 @@ RELEVANT_POKES = [
   #"41",
   #"13",
   #"48",
-  "1",
+  #"1",
   "2",
   "3",   # Venusaur
-  "4",
+  #"4",
   "5",
   "6",   # Charizard
-  "7",
+  #"7",
   "8",
   "9",   # Blastoise
   "25",  # Pikachu
@@ -73,7 +73,7 @@ def hit_api location=nil
 end
 
 def parse_response response
-  if response[4].match(/offline/) || response.any? {|r| r.match(/main.py/) }
+  if response && response[4].match(/offline/) || response.any? {|r| r.match(/main.py/) }
     puts "[#{Time.now}] servers are offline"
     exit
   end
@@ -127,5 +127,7 @@ if @found_pokes.any?
     html_body: body
   )
   puts "[#{Time.now}] Email sent."
+else
+  puts "[#{Time.now}] Nothing found."
 end
 
